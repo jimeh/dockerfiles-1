@@ -17,6 +17,8 @@ RUN rm -f /lib/systemd/system/multi-user.target.wants/* \
     /lib/systemd/system/sysinit.target.wants/systemd-tmpfiles-setup* \
     /lib/systemd/system/systemd-update-utmp*
 
+RUN if [ ! -e /sbin/init ]; then ln -s /lib/systemd/systemd /sbin/init; fi
+
 VOLUME [ "/sys/fs/cgroup" ]
 
 CMD ["/lib/systemd/systemd"]
